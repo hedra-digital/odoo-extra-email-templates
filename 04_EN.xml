@@ -1,0 +1,219 @@
+<!--?xml version="1.0"?-->
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;">
+                <tbody><tr><td align="center">
+                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="border-collapse:collapse;padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                        <tbody>
+                                <!-- HEADER -->
+                                <tr>
+                                    <td align="center" style="min-width: 590px;">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="590" style="border-collapse:collapse;min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                            <tbody><tr>
+                                                <td valign="middle">
+                                                    % set company = object.company_id or object.user_id.company_id or user.company_id
+                                                    <span style="font-size: 20px; font-weight: bold;">Order Details</span><br>
+<!--                                                    <span style="font-size: 10px;">-->
+<!--                                                        ${object.name}-->
+<!--                                                    </span>-->
+                                                </td>
+                                                <td valign="middle" align="right">
+                                                    <img src="/logo.png?company=${company.id}" style="border-style:none;vertical-align:middle;padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${company.name}">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="text-align:center;">
+                                                    <hr width="100%" style="margin:1rem 0 1rem 0;border-top-color:rgba(0, 0, 0, 0.1);border-top-style:solid;border-top-width:1px;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;overflow-y:visible;overflow-x:visible;height:0px;box-sizing:content-box;background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;">
+                                                </td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+
+                                    <!-- CONTENT -->
+                                <tr>
+                                    <td align="center" style="min-width: 590px;">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="590" style="border-collapse:collapse;min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                            <tbody><tr>
+                                                <td>
+                                                    <p style="font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;margin: 0px; padding: 0px; font-size: 13px;">
+                                                    % set doc_name = 'quotation' if object.state in ('draft', 'sent') else 'order'
+                                                    Dear ${object.partner_id.name}
+                                                    % if object.partner_id.parent_id:
+                                                        (${object.partner_id.parent_id.name})
+                                                    % endif
+                                                    <br><br>
+                                                    Here is
+                                                    % if ctx.get('proforma')
+                                                        in attachment your pro-forma invoice
+                                                    % else
+<!--                                                        the ${doc_name} <strong>${object.name}</strong>-->
+                                                       the <strong style="font-weight:bolder;">Order</strong>
+                                                    % endif
+                                                    % if object.origin:
+                                                        (with reference: ${object.origin} )
+                                                    % endif
+                                                    amounting in <strong style="font-weight:bolder;">${format_amount(object.amount_total, object.pricelist_id.currency_id)}</strong>
+                                                    from ${object.company_id.name}......
+                                                    <br>
+                                                    <br>
+                                                        % if object.expected_date:
+                                                            Your order going to deliver <strong style="font-weight:bolder;"> ${format_tz(object.expected_date, tz='UTC', format='%Y-%m-%d')}</strong>.(Expected Delivery Date)
+                                                        % endif
+                                                        <br>
+                                                        Perdi minha senha. Please <a href="/web/reset_password" style="text-decoration:none;background-color:transparent;color:rgb(0, 135, 132);">Click here</a>.
+                                                    <br>
+<!--                        % if object.ifthenpay_reference or object.ifthenpay_entity:-->
+                                                    % if object.ifthenpay_reference or object.ifthenpay_entity:
+                                                        For Ifthenpay Payment, please note the following details:
+                                                        <strong style="font-weight:bolder;">Amount: ${format_amount(object.amount_total, object.pricelist_id.currency_id)}</strong>
+                                                    % endif
+                                                    <br>
+                                                    % if object.ifthenpay_reference:
+                                                        <strong style="font-weight:bolder;">Reference: ${object.ifthenpay_reference}</strong>
+                                                    % endif
+                                                    <br>
+                                                    % if object.ifthenpay_entity:
+                                                        <strong style="font-weight:bolder;">Entity: ${object.ifthenpay_entity}</strong>
+                                                    % endif
+<!--                        <br /><br />-->
+<!--                        % else:-->
+<!--                        Do not hesitate to contact us if you have any question.-->
+<!--                        % endif-->
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-size: 10px;">
+<!--                                                    % if object.state in ('sent','sale'):-->
+                                                    % if object.order_line:
+                                                        
+                                                                % if object.order_line:
+                                                                    % for line in object.website_order_line:
+                                                                        % if line.product_id.id != object.carrier_id.product_id.id:
+                                                                            
+                                                                        % endif
+                                                                    % endfor
+                                                                    
+                                                                % endif
+                                                            <table style="border-collapse:collapse;">
+                                                            <tbody><tr>
+                                                                <th style="text-align:left;border-bottom: 1px solid black">Description</th>
+                                                                <th style="text-align:left;border-bottom: 1px solid black">Quantity</th>
+                                                                <th style="text-align:left;border-bottom: 1px solid black">Unit Price</th>
+                                                                <th style="text-align:left;border-bottom: 1px solid black">Disc.(%)</th>
+                                                                <th style="text-align:left;border-bottom: 1px solid black">Total Price</th>
+                                                            </tr>
+                                                            </tbody><tbody><tr>
+                                                                                <td>
+                                                                                    ${line.product_id.display_name}
+                                                                                </td>
+                                                                                <td>
+                                                                                    ${(line.product_uom_qty) | int} ${(line.product_uom.name)}
+                                                                                </td>
+                                                                                <td>
+                                                                                    ${'%.2f' % (line.price_unit) | float}
+                                                                                </td>
+                                                                                <td>
+                                                                                    ${'%.2f' % (line.discount) | float}
+                                                                                </td>
+                                                                                <td>
+                                                                                    ${'%.2f' % (line.price_total) | float}
+                                                                                </td>
+                                                                            </tr><tr>
+                                                                        <td style="text-align:right; border-top: 1px solid black;" colspan="4">
+                                                                            <strong style="font-weight:bolder;">Subtotal</strong>
+                                                                        </td>
+                                                                        <td style="border-top: 1px solid black">
+                                                                            ${'%.2f' % (object.amount_total) | float}
+                                                                        </td>
+                                                                    </tr></tbody>
+                                                        </table>
+                                                    % endif
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 10px; font-size: 10px;">
+<!--                                                    % if object.state in ('draft'):-->
+                                                    % if object.order_line:
+                                                        <h3 style="margin:0px 0 0.5rem 0;font-size:1.40833rem;line-height:1.2;font-weight:400;font-family:inherit;color:#A9A9A9;">THERE'S SOMETHING IN YOUR CART.</h3>
+                                                        Would you like to complete your purchase?<br><br>
+                                                        % if object.order_line:
+                                                            % for line in object.website_order_line:
+                                                                <hr style="margin:1rem 0 1rem 0;border-top-color:rgba(0, 0, 0, 0.1);border-top-style:solid;border-top-width:1px;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;overflow-y:visible;overflow-x:visible;height:0px;box-sizing:content-box;">
+                                                                <table width="100%" style="border-collapse:collapse;">
+                                                                    <tbody><tr>
+                                                                        <td style="padding: 10px; width:150px;">
+                                                                            <img src="/web/image/product.product/${line.product_id.id}/image" height="100px" width="100px" alt="Product image" style="border-style:none;vertical-align:middle;">
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong style="font-weight:bolder;">${line.product_id.display_name}</strong><br>${line.name}
+                                                                        </td>
+                                                                        <td width="100px" align="right">
+                                                                            ${(line.product_uom_qty) | int} ${(line.product_uom.name)}
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody></table>
+                                                            % endfor
+                                                            <hr style="margin:1rem 0 1rem 0;border-top-color:rgba(0, 0, 0, 0.1);border-top-style:solid;border-top-width:1px;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;overflow-y:visible;overflow-x:visible;height:0px;box-sizing:content-box;">
+                                                        % endif
+                                                    % endif
+                                                    <div style="font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;text-align: center; margin: 16px 0px 16px 0px; font-size: 14px;">
+                                                        <a href="${object.get_base_url()}/shop/cart?access_token=${object.access_token}" target="_blank" style="text-decoration:none;color:rgb(0, 135, 132);background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                                            Follow your purchase
+                                                        </a>
+                                                    </div>
+                                                    <div style="font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;text-align: center;"><strong style="font-weight:bolder;">Thank you for shopping with ${company.name}!</strong></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span style="font-family:verdana;color:red;"><b style="font-weight:bolder;">If the payment is already done, please ignore this message.</b></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align:center;">
+                                                    <hr width="100%" style="margin:1rem 0 1rem 0;border-top-color:rgba(0, 0, 0, 0.1);border-top-style:solid;border-top-width:1px;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;overflow-y:visible;overflow-x:visible;height:0px;box-sizing:content-box;background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;">
+                                                </td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                    <!-- FOOTER -->
+                                <tr>
+                                    <td align="center" style="min-width: 590px;">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="590" style="border-collapse:collapse;min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                            <tbody><tr>
+                                                <td valign="middle" align="left">
+                                                    ${company.name}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="middle" align="left" style="opacity: 0.7;">
+                                                    ${company.phone}
+                                                    % if company.email
+                                                        | <a href="'mailto:%s' % ${company.email}" style="text-decoration:none;background-color:transparent;color:rgb(0, 135, 132); color: #454748;">${company.email}</a>
+                                                    % endif
+                                                    % if company.website
+                                                        | <a href="'%s' % ${company.website}" style="text-decoration:none;background-color:transparent;color:rgb(0, 135, 132); color: #454748;">${company.website}</a>
+                                                    % endif
+                                                </td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </td></tr>
+                    <!-- POWERED BY -->
+                <tr>
+                    <td align="center" style="min-width: 590px;">
+                        <table border="0" cellpadding="0" cellspacing="0" width="590" style="border-collapse:collapse;min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
+                            <tbody><tr>
+                                <td style="text-align: center; font-size: 13px;">
+                                    Powered by <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=website" style="text-decoration:none;background-color:transparent;color: #875A7B;">Odoo</a>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+            </tbody></table>
+            

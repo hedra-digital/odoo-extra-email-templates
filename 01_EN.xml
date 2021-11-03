@@ -1,0 +1,160 @@
+<div style="margin: 0px; padding: 0px;">
+                    <table align="center" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td valign="middle">
+                                    <span style="font-size: 20px; font-weight: bold; color:#A9A9A9;"> Produzido e enviado por ${object.company_id.name}</span>
+                                </td>
+                                % if object.company_id:
+                                    <td valign="middle" align="right" class="o_mail_logo_container text-center o_mail_v_padding">
+                                        <a style="text-decoration:none;" href="#">
+                                            <img border="0" src="/logo.png?company=${object.company_id.id}" style="height:auto;width: 80px;" alt="${object.company_id.name}"/>
+                                        </a>
+                                    </td>
+                                % endif
+                            </tr>
+                            <tr>
+                                <td colspan="4" style="text-align:center;">
+                                    <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:10px 0px 10px 0px;"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                        <tr>
+                            <td>
+                                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Prezad@ ${object.sale_id.partner_id.name},
+                        % if object.sale_id.partner_id.parent_id:
+                            (${object.sale_id.partner_id.parent_id.name})
+                        % endif
+                        <br/>
+                        Seu pedido
+                        <strong>${object.sale_id.name}</strong>
+                        está sendo processado.
+                        % if object.purchase_id.metabrasil_po_status == 'Impressão':
+                            (Package has been <strong>${object.purchase_id.metabrasil_po_status}</strong>) .
+                        % endif
+
+                        % if object.purchase_id.metabrasil_po_status == 'Expedido':
+                            (Package has been
+                            <strong>${object.purchase_id.metabrasil_po_status}</strong>
+                            On <strong>${object.metabrasil_shipped_date}</strong> .
+                            % if object.metabrasil_delivery_url :
+                                Track your Order : <strong>${object.metabrasil_delivery_url}</strong>)
+                            % else:
+                                    )
+                            % endif
+                        % endif
+
+                        % if object.purchase_id.metabrasil_po_status == 'Entregue':
+                            (Package has been
+                            <strong>${object.purchase_id.metabrasil_po_status}</strong>
+                            On <strong>${object.metabrasil_delivered_date}</strong> .)
+                            % if object.metabrasil_delivery_url :
+                                Track your Order : <strong>${object.metabrasil_delivery_url}</strong>
+                            % endif
+                        % endif
+                        <br/>
+                        Caso queira nos contactar, por favor entre em contato pelo chat odo nosso site ou 
+                        por este email.
+                    </p>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size: 15px;">
+<!--                            % if object.state in ('sent','sale'):-->
+                                % if object.purchase_id:
+                                                                <table align="center" style="font-size: 20px; font-weight: bold; border-spacing: 0px;">
+	                                <tr>
+    	                                <td>Em produção
+                                            <br/>
+                                            % if object.purchase_id.metabrasil_po_status == 'Impressão':
+                                                <input type="radio" id="pick" name="pick" onclick="return false;" checked="checked"/>
+                                            % else:
+                                                <input type="radio" id="pick" name="pick" onclick="return false;"/>
+                                            % endif
+                                        </td>
+                                        <td style="padding-left: 200px;">Expedido
+                                            <br/>
+                                            % if object.purchase_id.metabrasil_po_status == 'Expedido':
+                                                <input type="radio" id="pack" name="pack" onclick="return false;" checked="checked"/>
+                                            % else:
+                                                <input type="radio" id="pack" name="pack" onclick="return false;"/>
+                                            % endif
+                                        </td>
+                                        <td style="padding-left: 200px;">Entregue
+                                            <br/>
+                                            % if object.purchase_id.metabrasil_po_status == 'Entregue':
+                                                <input type="radio" id="delivered" name="delivered" onclick="return false;" checked="checked"/>
+                                            % else:
+                                                <input type="radio" id="delivered" name="delivered" onclick="return false;"/>
+                                            % endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="text-align:center;">
+                                            <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:0px 0px 10px 0px;"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                                    <table>
+                                        <tr>
+                                            <th style="border-bottom: 1px solid black">Título</th>
+                                            <th style="border-bottom: 1px solid black">Qtd.</th>
+                                            <th style="border-bottom: 1px solid black">Uni.</th>
+                                            <th style="border-bottom: 1px solid black">Desc.(%)</th>
+                                            <th style="border-bottom: 1px solid black">Preço Total</th>
+                                        </tr>
+                                        <tbody>
+                                            % if object.purchase_id.order_line:
+                                                % for line in object.purchase_id.order_line:
+                                                    <tr>
+                                                        <td>
+                                                            ${line.product_id.display_name}
+                                                        </td>
+                                                        <td>
+                                                            ${(line.product_uom_qty) | int} ${(line.product_uom.name)}
+                                                        </td>
+                                                        <td>
+                                                           ${'%.2f' % (line.price_unit) | float}
+                                                        </td>
+                                                        <td>
+                                                             ${'%.2f' % (line.discount) | float}
+                                                        </td>
+                                                        <td>
+                                                            ${'%.2f' % (line.price_total) | float}
+                                                        </td>
+                                                    </tr>
+                                                % endfor
+                                                <tr>
+                                                    <td style="text-align:right; border-top: 1px solid black;" colspan="4">
+                                                        <strong>Subtotal</strong>
+                                                    </td>
+                                                    <td style="border-top: 1px solid black; padding-left: 5px;">
+                                                        ${(object.purchase_id.amount_total) | float}
+                                                    </td>
+                                                </tr>
+                                            % endif
+                                        </tbody>
+                                    </table>
+                                % endif
+                                % if object.purchase_id.metabrasil_po_status in ('Impressão','Expedido'):
+                                    <div style="text-align: center; margin: 16px 0px 16px 0px; font-size: 14px;">
+                                        <a href="${object.sale_id.get_base_url()}/shop/cart?access_token=${object.access_token}" target="_blank" style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                            Acompanhe sua venda
+                                        </a>
+                                    </div>
+                                % endif
+                                <div style="text-align: center;"><strong>Obrigado por comprar conosco (${object.company_id.name})</strong></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span style="font-family:verdana;color:red;"><b></b></span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            
