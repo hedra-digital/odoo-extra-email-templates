@@ -181,11 +181,11 @@
                                 <div style="text-align: center;"><strong>Obrigado por comprar com ${object.company_id.name}!</strong></div>
                             </td>
                         </tr>
-                        <tr>
+<!--                         <tr>
                             <td>
                                 <span style="text-align: center;"><b>Se o pagamento já foi realizado, favor ignorar essa mensagem.</b></span>
                             </td>
-                        </tr>
+                        </tr> -->
                     </table>
                 </div>
             

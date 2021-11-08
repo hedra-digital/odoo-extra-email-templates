@@ -59,7 +59,7 @@
                                                             Seu pedido será entregue em <strong> ${format_tz(object.expected_date, tz='UTC', format='%Y-%m-%d')}</strong>.
                                                         % endif
                                                         <br/>
-                                                        Perdeu minha senha? Por favor <a href="/web/reset_password">Click here</a>.
+                                                        (Perdeu minha senha? Por favor <a href="/web/reset_password">clique aqui</a>).
                                                     <br/>
 <!--                        % if object.ifthenpay_reference or object.ifthenpay_entity:-->
                                                     % if object.ifthenpay_reference or object.ifthenpay_entity:
@@ -87,11 +87,11 @@
                                                     % if object.order_line:
                                                         <table>
                                                             <tr>
-                                                                <th style="border-bottom: 1px solid black">Description</th>
-                                                                <th style="border-bottom: 1px solid black">Quantity</th>
-                                                                <th style="border-bottom: 1px solid black">Unit Price</th>
-                                                                <th style="border-bottom: 1px solid black">Disc.(%)</th>
-                                                                <th style="border-bottom: 1px solid black">Total Price</th>
+                                                                <th style="border-bottom: 1px solid black">Livro</th>
+                                                                <th style="border-bottom: 1px solid black">Qde</th>
+                                                                <th style="border-bottom: 1px solid black">Preço</th>
+                                                                <th style="border-bottom: 1px solid black">%</th>
+                                                                <th style="border-bottom: 1px solid black">Total</th>
                                                             </tr>
                                                             <tbody>
                                                                 % if object.order_line:
@@ -161,14 +161,14 @@
                                                             Acompanhe seu pedido
                                                         </a>
                                                     </div>
-                                                    <div style="text-align: center;"><strong>Thank you for shopping with ${company.name}!</strong></div>
+                                                    <div style="text-align: center;"><strong>Obrigado por comprar conosco.</strong></div>
                                                 </td>
                                             </tr>
-                                            <tr>
+<!--                                             <tr>
                                                 <td>
-                                                    <span style="font-family:verdana;color:red;"><b>Se seu pagamento já foi realizado, por favor ignorar compranças.</b></span>
+                                                    <span style="text-align: center;"><b>Se seu pagamento já foi realizado, por favor ignorar.</b></span>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                             <tr>
                                                 <td style="text-align:center;">
                                                     <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
