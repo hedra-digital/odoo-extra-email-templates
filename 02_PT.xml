@@ -1,70 +1,70 @@
-<div style="font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;margin: 0px; padding: 0px;">        
-                                % if object.company_id:
-
-                                % endif
-
-                            <table align="center" cellspacing="0" cellpadding="0" border="0" width="100%" style="border-collapse:collapse;">
+<div style="margin: 0px; padding: 0px;">
+                    <table align="center" cellspacing="0" cellpadding="0" border="0" width="100%">
                         <tbody>
                             <tr>
                                 <td valign="middle">
                                     <span style="font-size: 20px; font-weight: bold; color:#A9A9A9;"> Produzido por Hedra/EdLab</span>
-                                </td><td valign="middle" align="right" class="o_mail_logo_container text-center o_mail_v_padding" style="text-align:center;">
-                                        <a href="#" style="text-decoration:none;background-color:transparent;color:rgb(0, 135, 132);">
-                                            <img border="0" src="/logo.png?company=${object.company_id.id}" style="border-style:none;vertical-align:middle;height:auto;width: 80px;" alt="${object.company_id.name}">
+                                </td>
+                                % if object.company_id:
+                                    <td valign="middle" align="right" class="o_mail_logo_container text-center o_mail_v_padding">
+                                        <a style="text-decoration:none;" href="#">
+                                            <img border="0" src="/logo.png?company=${object.company_id.id}" style="height:auto;width: 80px;" alt="${object.company_id.name}"/>
                                         </a>
-                                    </td></tr>
+                                    </td>
+                                % endif
+                            </tr>
                             <tr>
                                 <td colspan="4" style="text-align:center;">
-                                    <hr width="100%" style="margin:1rem 0 1rem 0;border-top-color:rgba(0, 0, 0, 0.1);border-top-style:solid;border-top-width:1px;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;overflow-y:visible;overflow-x:visible;height:0px;box-sizing:content-box;background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:10px 0px 10px 0px;">
+                                    <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:10px 0px 10px 0px;"/>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
-                        <tbody><tr>
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                        <tr>
                             <td>
-                    <p style="font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;margin: 0px; padding: 0px; font-size: 13px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
                         Prezad@ ${object.sale_id.partner_id.name} ,
 
                         % if object.sale_id.partner_id.parent_id:
                         (${object.sale_id.partner_id.parent_id.name})
                         % endif
-                        <br>
+                        <br/>
                         O status do seu pedido
-                        <strong style="font-weight:bolder;">${object.sale_id.name}</strong>
+                        <strong>${object.sale_id.name}</strong>
                         % if object.purchase_id.metabrasil_po_status == 'Entregue':
                             foi modificado para
-                            <strong style="font-weight:bolder;">${object.purchase_id.metabrasil_po_status}</strong>
+                            <strong>${object.purchase_id.metabrasil_po_status}</strong>
                             % if object.metabrasil_delivery_url :
-                                Acompanha seu pedido: <strong style="font-weight:bolder;">${object.metabrasil_delivery_url}</strong>
-                                </p><div style="font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;text-align: center; margin: 16px 0px 16px 0px; font-size: 14px;">
-                                        <a href="${object.metabrasil_delivery_url}" target="_blank" style="text-decoration:none;color:rgb(0, 135, 132);background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                Acompanha seu pedido: <strong>${object.metabrasil_delivery_url}</strong>
+                                <div style="text-align: center; margin: 16px 0px 16px 0px; font-size: 14px;">
+                                        <a href="${object.metabrasil_delivery_url}" target="_blank" style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
                                             Acompanhe
                                         </a>
                                 </div>
                             % endif
                         % endif
                         % if object.metabrasil_delivered_date:
-                            em
-                            <strong style="font-weight:bolder;">${object.metabrasil_delivered_date}</strong>
+                            on
+                            <strong>${object.metabrasil_delivered_date}</strong>
                         % endif
-                        <br>
+                        <br/>
                         Obrigado pela compra.
-                        <br>
+                        <br/>
                         Com atenção
-                        (Perdeu a senha? Por favor <a href="/web/reset_password" style="text-decoration:none;background-color:transparent;color:rgb(0, 135, 132);">clique aqui</a>).
+                        Perdeu a senha? Por favor <a href="/web/reset_password">Click here</a>.
                         % if object.sale_id.carrier_id:
-                           <br>
+                           <br/>
                            % if object.sale_id.carrier_id.ks_delivery_days:
                              Entregue em ${object.sale_id.carrier_id.ks_delivery_days}
                              % if object.sale_id.carrier_id.ks_delivery_days|int == 1:
-                               dia.
-                             % elif object.sale_id.carrier_id.ks_delivery_days|int &gt; 1:
-                               dias.
+                               Dia.
+                             % elif object.sale_id.carrier_id.ks_delivery_days|int >1:
+                               Dias.
                              % endif
                            % endif
                         % endif
-                    <p style="margin:0px 0 1rem 0;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;"></p>
+                    </p>
 
                             </td>
                         </tr>
@@ -72,50 +72,45 @@
                             <td style="font-size: 15px;">
 <!--                            % if object.state in ('sent','sale'):-->
                                 % if object.purchase_id:
-                                
+                                <table align="center" style="font-size: 20px; font-weight: bold; border-spacing: 0px;">
+                                    <tr>
                                         % if object.purchase_id.metabrasil_po_status == 'Entregue':
-                                        
-                                        % endif
-                                    <table align="center" style="border-collapse:collapse;font-size: 20px; font-weight: bold; border-spacing: 0px;">
-                                    <tbody><tr><td>Pick
-                                            <br>
-                                            <img src="https://img.icons8.com/fluency/48/000000/circled.png" height="15px" style="border-style:none;vertical-align:middle;">
+                                        <td>Pick
+                                            <br/>
+                                            <img src="https://img.icons8.com/fluency/48/000000/circled.png" height="15px"/>
 <!--                                            <input type="radio" id="pick" name="pick" onclick="return false;" checked="checked"/>-->
                                         </td>
                                         <td style="padding-left: 200px;">Pack
-                                            <br>
-                                            <img src="https://img.icons8.com/fluency/48/000000/circled.png" height="15px" style="border-style:none;vertical-align:middle;">
+                                            <br/>
+                                            <img src="https://img.icons8.com/fluency/48/000000/circled.png" height="15px"/>
 <!--                                            <input type="radio" id="pack" name="pack" onclick="return false;" checked="checked"/>-->
                                         </td>
                                         <td style="padding-left: 200px;">Delivered
-                                            <br>
-                                            <img src="https://img.icons8.com/fluency/48/000000/circled.png" height="15px" style="border-style:none;vertical-align:middle;">
+                                            <br/>
+                                            <img src="https://img.icons8.com/fluency/48/000000/circled.png" height="15px"/>
 <!--                                            <input type="radio" id="delivered" name="delivered" onclick="return false;" checked="checked"/>-->
-                                        </td></tr>
+                                        </td>
+                                        % endif
+                                    </tr>
                                     <tr>
                                         <td colspan="3" style="text-align:center;">
-                                            <hr width="100%" style="margin:1rem 0 1rem 0;border-top-color:rgba(0, 0, 0, 0.1);border-top-style:solid;border-top-width:1px;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;overflow-y:visible;overflow-x:visible;height:0px;box-sizing:content-box;background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:0px 0px 10px 0px;">
+                                            <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:0px 0px 10px 0px;"/>
                                         </td>
                                     </tr>
-                                </tbody></table>
-                                    
+                                </table>
+                                    <table>
+                                        <tr>
+                                            <th style="border-bottom: 1px solid black">Description</th>
+                                            <th style="border-bottom: 1px solid black">Quantity</th>
+                                            <th style="border-bottom: 1px solid black">Unit Price</th>
+                                            <th style="border-bottom: 1px solid black">Disc.(%)</th>
+                                            <th style="border-bottom: 1px solid black">Total Price</th>
+                                        </tr>
+                                        <tbody>
                                             % if object.purchase_id.order_line:
                                                 % for line in object.purchase_id.order_line:
                                                     % if line.product_id.id != object.sale_id.carrier_id.product_id.id:
-                                                        
-                                                    % endif
-                                                % endfor
-                                                
-                                            % endif
-                                        <table style="border-collapse:collapse;">
-                                        <tbody><tr>
-                                            <th style="text-align:left;border-bottom: 1px solid black">Description</th>
-                                            <th style="text-align:left;border-bottom: 1px solid black">Quantity</th>
-                                            <th style="text-align:left;border-bottom: 1px solid black">Unit Price</th>
-                                            <th style="text-align:left;border-bottom: 1px solid black">Disc.(%)</th>
-                                            <th style="text-align:left;border-bottom: 1px solid black">Total Price</th>
-                                        </tr>
-                                        </tbody><tbody><tr>
+                                                        <tr>
                                                             <td>
                                                                 ${line.product_id.display_name}
                                                             </td>
@@ -131,31 +126,36 @@
                                                             <td>
                                                                 ${'%.2f' % (line.price_total) | float}
                                                             </td>
-                                                        </tr><tr>
+                                                        </tr>
+                                                    % endif
+                                                % endfor
+                                                <tr>
                                                     <td style="text-align:right; border-top: 1px solid black;" colspan="4">
-                                                        <strong style="font-weight:bolder;">Subtotal</strong>
+                                                        <strong>Subtotal</strong>
                                                     </td>
                                                     <td style="border-top: 1px solid black; padding-left: 5px;">
                                                         ${'%.2f' % (object.purchase_id.amount_total) | float}
                                                     </td>
-                                                </tr></tbody>
+                                                </tr>
+                                            % endif
+                                        </tbody>
                                     </table>
                                 % endif
                                 % if object.purchase_id.metabrasil_po_status in ('Impressão','Expedido'):
-                                    <div style="font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;text-align: center; margin: 16px 0px 16px 0px; font-size: 14px;">
-                                        <a href="${object.sale_id.get_base_url()}/shop/cart?access_token=${object.access_token}" target="_blank" style="text-decoration:none;color:rgb(0, 135, 132);background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                    <div style="text-align: center; margin: 16px 0px 16px 0px; font-size: 14px;">
+                                        <a href="${object.sale_id.get_base_url()}/shop/cart?access_token=${object.access_token}" target="_blank" style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
                                             Acompanhe sua compra
                                         </a>
                                     </div>
                                 % endif
-                                <div style="font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;text-align: center;"><strong style="font-weight:bolder;">Obrigado por comprar com ${object.company_id.name}!</strong></div>
+                                <div style="text-align: center;"><strong>Obrigado por comprar com ${object.company_id.name}!</strong></div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <span style="font-family:verdana;color:red;"><b style="font-weight:bolder;">Se o pagamento já foi realizado, favor ignorar essa mensagem.</b></span>
+                                <span style="font-family:verdana;color:red;"><b>Se o pagamento já foi realizado, favor ignorar essa mensagem.</b></span>
                             </td>
                         </tr>
-                    </tbody></table>
+                    </table>
                 </div>
             
