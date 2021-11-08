@@ -74,9 +74,9 @@
                            % if object.sale_id.carrier_id.ks_delivery_days:
                              Entregue em ${object.sale_id.carrier_id.ks_delivery_days}
                              % if object.sale_id.carrier_id.ks_delivery_days|int == 1:
-                               Dia.
+                               dia.
                              % elif object.sale_id.carrier_id.ks_delivery_days|int > 1:
-                               Dias.
+                               dias.
                              % endif
                            % endif
                         % endif
@@ -130,11 +130,11 @@
                                 </table>
                                     <table>
                                         <tr>
-                                            <th style="border-bottom: 1px solid black">Description</th>
-                                            <th style="border-bottom: 1px solid black">Quantity</th>
-                                            <th style="border-bottom: 1px solid black">Unit Price</th>
-                                            <th style="border-bottom: 1px solid black">Disc.(%)</th>
-                                            <th style="border-bottom: 1px solid black">Total Price</th>
+                                            <th style="border-bottom: 1px solid black">Livro</th>
+                                            <th style="border-bottom: 1px solid black">Qde</th>
+                                            <th style="border-bottom: 1px solid black">Preço</th>
+                                            <th style="border-bottom: 1px solid black">%</th>
+                                            <th style="border-bottom: 1px solid black">Total</th>
                                         </tr>
                                         <tbody>
                                             % if object.purchase_id.order_line:
