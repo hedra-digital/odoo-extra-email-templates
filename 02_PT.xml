@@ -75,17 +75,17 @@
                                 <table align="center" style="font-size: 20px; font-weight: bold; border-spacing: 0px;">
                                     <tr>
                                         % if object.purchase_id.metabrasil_po_status == 'Entregue':
-                                        <td>Pick
+                                        <td>Produção/Separação
                                             <br/>
                                             <img src="https://img.icons8.com/fluency/48/000000/circled.png" height="15px"/>
 <!--                                            <input type="radio" id="pick" name="pick" onclick="return false;" checked="checked"/>-->
                                         </td>
-                                        <td style="padding-left: 200px;">Pack
+                                        <td style="padding-left: 200px;">Enviado
                                             <br/>
                                             <img src="https://img.icons8.com/fluency/48/000000/circled.png" height="15px"/>
 <!--                                            <input type="radio" id="pack" name="pack" onclick="return false;" checked="checked"/>-->
                                         </td>
-                                        <td style="padding-left: 200px;">Delivered
+                                        <td style="padding-left: 200px;">Entregue
                                             <br/>
                                             <img src="https://img.icons8.com/fluency/48/000000/circled.png" height="15px"/>
 <!--                                            <input type="radio" id="delivered" name="delivered" onclick="return false;" checked="checked"/>-->
