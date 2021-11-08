@@ -24,7 +24,7 @@
                         <tr>
                             <td>
                                 <p style="margin: 0px; padding: 0px; font-size: 13px;">
-                        Dear ${object.sale_id.partner_id.name} ,
+                        Prezad@ ${object.sale_id.partner_id.name} ,
                         % if object.sale_id.partner_id.parent_id:
                             (${object.sale_id.partner_id.parent_id.name})
                         % endif
@@ -33,11 +33,11 @@
                         <strong>${object.sale_id.name}</strong>
                         está à caminho.
                         % if object.purchase_id.metabrasil_po_status == 'Impressão':
-                            (Package has been <strong>${object.purchase_id.metabrasil_po_status}</strong>) .
+                            (foi modificado para  <strong>${object.purchase_id.metabrasil_po_status}</strong>) .
                         % endif
 
                         % if object.purchase_id.metabrasil_po_status == 'Expedido':
-                            (Package has been
+                            (foi modificado para 
                             <strong>${object.purchase_id.metabrasil_po_status}</strong>
                             On <strong>${object.metabrasil_shipped_date}</strong> .
                             % if object.metabrasil_delivery_url :
@@ -53,7 +53,7 @@
                         % endif
 
                         % if object.purchase_id.metabrasil_po_status == 'Entregue':
-                            (O pacote foi 
+                            (foi modificado para 
                             <strong>${object.purchase_id.metabrasil_po_status}</strong>
                             On <strong>${object.metabrasil_delivered_date}</strong> .)
                             % if object.metabrasil_delivery_url :
@@ -68,15 +68,15 @@
                         <br/>
                         Se você tiver alguma questão, por favor entre em contato conosco.
                         Com atenção.
-                        Perdeu a senha? Por favor <a href="/web/reset_password">Clique aqui</a>.
+                        Perdi minha senha. Please <a href="/web/reset_password">Click here</a>.
                         % if object.sale_id.carrier_id:
                            <br/>
                            % if object.sale_id.carrier_id.ks_delivery_days:
-                             Entrega em ${object.sale_id.carrier_id.ks_delivery_days}
+                             Entregue em ${object.sale_id.carrier_id.ks_delivery_days}
                              % if object.sale_id.carrier_id.ks_delivery_days|int == 1:
-                               dia.
+                               Dia.
                              % elif object.sale_id.carrier_id.ks_delivery_days|int > 1:
-                               dias.
+                               Dias.
                              % endif
                            % endif
                         % endif
@@ -130,11 +130,11 @@
                                 </table>
                                     <table>
                                         <tr>
-                                            <th style="border-bottom: 1px solid black">Item</th>
-                                            <th style="border-bottom: 1px solid black">Qde.</th>
-                                            <th style="border-bottom: 1px solid black">Preço</th>
-                                            <th style="border-bottom: 1px solid black">(%)</th>
-                                            <th style="border-bottom: 1px solid black">Total</th>
+                                            <th style="border-bottom: 1px solid black">Description</th>
+                                            <th style="border-bottom: 1px solid black">Quantity</th>
+                                            <th style="border-bottom: 1px solid black">Unit Price</th>
+                                            <th style="border-bottom: 1px solid black">Disc.(%)</th>
+                                            <th style="border-bottom: 1px solid black">Total Price</th>
                                         </tr>
                                         <tbody>
                                             % if object.purchase_id.order_line:
@@ -178,7 +178,7 @@
                                         </a>
                                     </div>
                                 % endif
-                                <div style="text-align: center;"><strong>Obrigado por comprar com ${object.company_id.name}</strong></div>
+                                <div style="text-align: center;"><strong>Obrigado por comprar com ${object.company_id.name}!</strong></div>
                             </td>
                         </tr>
                         <tr>
