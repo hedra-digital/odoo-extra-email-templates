@@ -36,7 +36,7 @@
                             foi modificado para
                             <strong>${object.purchase_id.metabrasil_po_status}</strong>
                             % if object.metabrasil_delivery_url :
-                                Acompanha seu pedido: <strong>${object.metabrasil_delivery_url}</strong>
+                                Acompanhe seu pedido: <strong>${object.metabrasil_delivery_url}</strong>
                                 <div style="text-align: center; margin: 16px 0px 16px 0px; font-size: 14px;">
                                         <a href="${object.metabrasil_delivery_url}" target="_blank" style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
                                             Acompanhe
@@ -51,8 +51,8 @@
                         <br/>
                         Obrigado pela compra.
                         <br/>
-                        Com atenção
-                        Perdeu a senha? Por favor <a href="/web/reset_password">Click here</a>.
+                        Com atenção.
+                        (Perdeu a senha? Por favor <a href="/web/reset_password">clique aqui</a>.)
                         % if object.sale_id.carrier_id:
                            <br/>
                            % if object.sale_id.carrier_id.ks_delivery_days:
@@ -153,7 +153,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <span style="font-family:verdana;color:red;"><b>Se o pagamento já foi realizado, favor ignorar essa mensagem.</b></span>
+                                <span style="text-align: center;"><b>Se o pagamento já foi realizado, favor ignorar essa mensagem.</b></span>
                             </td>
                         </tr>
                     </table>

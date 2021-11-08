@@ -68,7 +68,7 @@
                         <br/>
                         Se você tiver alguma questão, por favor entre em contato conosco.
                         Com atenção.
-                        Perdi minha senha. Please <a href="/web/reset_password">Click here</a>.
+                        (Perdeu a senha? Por favor <a href="/web/reset_password">clique aqui</a>.)
                         % if object.sale_id.carrier_id:
                            <br/>
                            % if object.sale_id.carrier_id.ks_delivery_days:
@@ -183,7 +183,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <span style="font-family:verdana;color:red;"><b>Se o pagamento já foi realizado, favor ignorar essa mensagem.</b></span>
+                                <span style="text-align: center;"><b>Se o pagamento já foi realizado, favor ignorar essa mensagem.</b></span>
                             </td>
                         </tr>
                     </table>
