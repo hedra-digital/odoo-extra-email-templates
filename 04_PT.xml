@@ -46,7 +46,7 @@
                                                         anexa sua nota
                                                     % else
 <!--                                                        o ${doc_name} <strong>${object.name}</strong>-->
-                                                       o <strong>Order</strong>
+                                                       o seu pedido
                                                     % endif
                                                     % if object.origin:
                                                         (Referência: ${object.origin} )
