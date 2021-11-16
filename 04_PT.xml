@@ -46,13 +46,13 @@
                                                         anexa sua nota
                                                     % else
 <!--                                                        o ${doc_name} <strong>${object.name}</strong>-->
-                                                       o seu pedido
+                                                       o <strong>Pedido</strong>
                                                     % endif
                                                     % if object.origin:
                                                         (Referência: ${object.origin} )
                                                     % endif
                                                     totalizando <strong>${format_amount(object.amount_total, object.pricelist_id.currency_id)}</strong>
-                                                    e produzido por ${object.company_id.name}......
+                                                    e produzido por ${object.company_id.name}.
                                                     <br/>
                                                     <br/>
                                                         % if object.expected_date:
@@ -132,10 +132,10 @@
                                             </tr>
                                             <tr>
                                                 <td style="padding: 10px; font-size: 10px;">
-<!--                                                    % if object.state in ('draft'):-->
-                                                    % if object.order_line:
-                                                        <h3 style="color:#A9A9A9;">Achamos algo no seu carrinho.</h3>
-                                                        Você gostaria de concluir sua compra?<br/><br/>
+                                             % if object.state in ('draft', 'sent') and object.order_line:
+                                                    <!--% if object.order_line:-->
+                                                        <h3 style="color:#A9A9A9;"> Achamos algo em seu carrinho.</h3>
+                                                        Você gostaria de concluir seu pedido?<br/><br/>
                                                         % if object.order_line:
                                                             % for line in object.website_order_line:
                                                                 <hr/>
@@ -156,11 +156,11 @@
                                                             <hr/>
                                                         % endif
                                                     % endif
-                                                    <div style="text-align: center; margin: 16px 0px 16px 0px; font-size: 14px;">
+                                                    <!---<div style="text-align: center; margin: 16px 0px 16px 0px; font-size: 14px;">
                                                         <a href="${object.get_base_url()}/shop/cart?access_token=${object.access_token}" target="_blank" style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
                                                             Acompanhe seu pedido
                                                         </a>
-                                                    </div>
+                                                    </div>--->
                                                     <div style="text-align: center;"><strong>Obrigado por comprar conosco.</strong></div>
                                                 </td>
                                             </tr>
@@ -216,4 +216,3 @@
                     </td>
                 </tr>
             </table>
-            
