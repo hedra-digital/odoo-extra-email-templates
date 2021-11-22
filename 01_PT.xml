@@ -68,7 +68,7 @@
                         <br/>
                         Se você tiver alguma questão, por favor entre em contato conosco.
                         Com atenção.
-                        (Perdeu a senha? Por favor <a href="/web/reset_password">clique aqui</a>.)
+                        (Quer acompanhar seu pedido? Por favor crie uma senha <a href="/web/reset_password">aqui</a> com o email que você fez a compra.)
                         % if object.sale_id.carrier_id:
                            <br/>
                            % if object.sale_id.carrier_id.ks_delivery_days:
