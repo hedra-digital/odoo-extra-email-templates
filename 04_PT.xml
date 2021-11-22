@@ -59,7 +59,7 @@
                                                             Seu pedido será entregue em <strong> ${format_tz(object.expected_date, tz='UTC', format='%Y-%m-%d')}</strong>.
                                                         % endif
                                                         <br/>
-                                                        (Perdeu minha senha? Por favor <a href="/web/reset_password">clique aqui</a>).
+                                      (Quer acompanhar seu pedido? Por favor crie uma senha <a href="/web/reset_password">aqui</a> com o email que você fez a compra.)
                                                     <br/>
 <!--                        % if object.ifthenpay_reference or object.ifthenpay_entity:-->
                                                     % if object.ifthenpay_reference or object.ifthenpay_entity:
@@ -72,7 +72,7 @@
                                                     % endif
                                                     <br/>
                                                     % if object.ifthenpay_entity:
-                                                        <strong>Entity: ${object.ifthenpay_entity}</strong>
+                                                        <str(Quer acompanhar seu pedido? Por favor crie uma senha <a href="/web/reset_password">aqui</a> com o email que você fez a compra.)ong>Entity: ${object.ifthenpay_entity}</strong>
                                                     % endif
 <!--                        <br /><br />-->
 <!--                        % else:-->
